@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DegreePlanner.Views.CourseEntryPage"
+             Title="Course Entry">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+ Note" x:Name="addNotesButton" Clicked="OnAddNoteClicked"/>
+    </ContentPage.ToolbarItems>
+    
+    <ScrollView>
+        <StackLayout Margin="10">
+            <Entry x:Name="titleEntry" 
+                   FontSize="Large" Placeholder="Enter course title" Text="{Binding Title}" />
+            
+            <!-- Title Entry, Date Pickers and Status Picker -->
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0"
+                       Text="Start" FontSize="Medium"
+                       HorizontalOptions="Center" VerticalOptions="Center"/>
+                <DatePicker Grid.Row="0" Grid.Column="1" 
+                            x:Name="startPicker" Date="{Binding Start}" />
+
+                <Label Grid.Row="1" Grid.Column="0"
+                       Text="End" FontSize="Medium"
+                       HorizontalOptions="Center" VerticalOptions="Center"/>
+                <DatePicker Grid.Row="1" Grid.Column="1"
+                            x:Name="endPicker" Date="{Binding End}" />
+
+                <Label Grid.Row="2" Grid.Column="0"
+                       Text="Status" FontSize="Medium"
+                       HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Picker Grid.Row="2" Grid.Column="1"
+                        x:Name="statusPicker" />
+            </Grid>
+
+            <!-- Course Instructor Info Entries -->
+            <Label Text="Course Instructor"
+                   FontSize="Large"
+                   VerticalOptions="End" 
+                   HorizontalOptions="Center"/>
+            <Entry x:Name="nameEntry"
+                   Placeholder="Name" Text="{Binding InstructorName}"/>
+            <Entry x:Name="phoneEntry" 
+                   Keyboard="Telephone"
+                   Placeholder="Phone #" Text="{Binding InstructorPhone}"/>
+            <Entry x:Name="emailEntry" 
+                   Keyboard="Email"
+                   Placeholder="Email" Text="{Binding InstructorEmail}"/>
+            
+            <!-- Assessment Info -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
+                <ListView x:Name="assessmentView"
+                      ItemSelected="OnAssessmentViewItemSelected" BackgroundColor="WhiteSmoke" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}"
+                                  Detail="{Binding StartEnd}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <Button x:Name="addAssessButton" 
+                    Text="Add Assessment" Clicked="OnAddAssessmentButtonClicked"/>
+
+            <!-- Notes Info -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+
+                <ListView Grid.Row="0"  x:Name="notesView" 
+                      ItemSelected="OnNotesViewItemSelected" BackgroundColor="WhiteSmoke">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Id, StringFormat='Note ID: {0:G}'}"
+                                  Detail="{Binding Content}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0"
+                   Text="Set Alert for Start Date" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>
+                <Switch Grid.Row="0" Grid.Column="1"
+                    x:Name="startDateSwitch" HorizontalOptions="Center" Scale="1.5"/>
+                <Label Grid.Row="1" Grid.Column="0"
+                   Text="Set Alert for End Date" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>
+                <Switch Grid.Row="1" Grid.Column="1"
+                    x:Name="endDateSwitch" HorizontalOptions="Center" Scale="1.5"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" x:Name="saveCourseButton" Text="Save" 
+                    Clicked="OnSaveButtonClicked" />
+                <Button Grid.Column="1" x:Name="deleteCourseButton" Text="Delete"
+                    Clicked="OnDeleteButtonClicked"/>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

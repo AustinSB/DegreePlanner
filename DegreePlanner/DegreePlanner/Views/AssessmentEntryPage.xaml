@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DegreePlanner.Views.AssessmentEntryPage"
+             Title="Assessment Entry">
+    
+    <StackLayout Margin="10">
+        
+        <Entry x:Name="nameEntry"
+               Text="{Binding Name}"
+               Placeholder="Assessment Name"
+               FontSize="Large" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"
+                Text="Assessment Type" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Picker Grid.Row="0" Grid.Column="1"
+                x:Name="typePicker" />
+
+            <Label Grid.Row="1" Grid.Column="0"
+                Text="Start Date" FontSize="Medium"
+               HorizontalOptions="Center" VerticalOptions="Center"/>
+            <DatePicker Grid.Row="1" Grid.Column="1"
+                x:Name="startPicker" Date="{Binding Start}" />
+
+            <Label Grid.Row="2" Grid.Column="0"
+                Text="End Date" FontSize="Medium"
+               HorizontalOptions="Center" VerticalOptions="Center"/>
+            <DatePicker Grid.Row="2" Grid.Column="1"
+                x:Name="endPicker" Date="{Binding End}" />
+
+            <Label Grid.Row="3" Grid.Column="0"
+                   Text="Set Alert for Start Date" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>
+            <Switch Grid.Row="3" Grid.Column="1"
+                    x:Name="startDateSwitch" HorizontalOptions="Center" Scale="1.5"/>
+            <Label Grid.Row="4" Grid.Column="0"
+                   Text="Set Alert for End Date" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>
+            <Switch Grid.Row="4" Grid.Column="1"
+                    x:Name="endDateSwitch" HorizontalOptions="Center" Scale="1.5"/>
+        </Grid>
+
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" x:Name="saveAssessmentButton"
+                Text="Save"
+                Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1" x:Name="deleteAssessmentButton"
+                Text="Delete"
+                Clicked="OnDeleteButtonClicked"/>
+        </Grid>
+        
+    </StackLayout>
+
+</ContentPage>

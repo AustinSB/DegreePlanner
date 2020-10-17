@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DegreePlanner.Views.NoteEntryPage"
+             Title="Note Entry">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Share Note" Clicked="OnShareNoteClicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Editor Grid.Row="0" Grid.ColumnSpan="2"
+                        x:Name="contentEditor"
+                        Text="{Binding Content}" 
+                        Placeholder="Enter note here"
+                        HeightRequest="200"/>
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        Text="Save" x:Name="saveNoteButton"
+                        Clicked="OnSaveButtonClicked" />
+                <Button Grid.Row="1" Grid.Column="1"
+                        Text="Delete" x:Name="deleteNoteButton"
+                        Clicked="OnDeleteButtonClicked"/>
+            </Grid>
+            
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
